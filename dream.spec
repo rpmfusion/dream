@@ -2,18 +2,18 @@
 %global ver_suffix svn808
 
 Name:		dream
-Version:	2.1.1
-Release:	7%{?dist}
+Version:	2.2
+Release:	1%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
-Source0:	https://downloads.sourceforge.net/project/drm/%{name}/%{version}/%{name}-%{version}-%{ver_suffix}.tar.gz
+Source0:	https://sourceforge.net/projects/drm/files/dream/%{version}/dream_%{version}.orig.tar.gz
 Source1:	dream.desktop
-Patch0:		dream-2.1.1-use-system-libs.patch
+Patch0:		dream-%{version}-use-system-libs.patch
 BuildRequires:	gcc-c++, hamlib-devel, dos2unix, qt5-devel, pulseaudio-libs-devel
 BuildRequires:	libpcap-devel, gpsd-devel, libsndfile-devel, speexdsp-devel, fftw-devel
 BuildRequires:	opus-devel, faad2-devel, qwt-qt5-devel, qt5-qtwebkit-devel
-BuildRequires:	desktop-file-utils
+BuildRequires:	desktop-file-utils, libpcap-devel
 BuildRequires:	faac-devel > 1.29.9.2-3
 Requires:	hicolor-icon-theme
 
@@ -23,15 +23,14 @@ With Dream, DRM broadcasts can be received with a modified analog
 receiver (SW, MW, LW) and a PC with a sound card.
 
 %prep
-%setup -q -n %{name}
+%autosetup -n dream-%{version}
 
 # convert CRLF to LF
 dos2unix dream.pro
 
-%patch0 -p1 -b .use-system-libs
-
 %build
 OUT_PWD="%{_prefix}" %{qmake_qt5} ./dream.pro
+%make_build
 
 %install
 %make_install INSTALL_ROOT="%{buildroot}"
@@ -54,6 +53,9 @@ desktop-file-install --add-category="Utility" \
 %{_mandir}/man1/*
 
 %changelog
+* Sun Aug 11 2019 Antonio Trande <sagitter@fedoraproject.org> - 2.2-1
+- Release 2.2
+
 * Sat Aug 10 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.1.1-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
