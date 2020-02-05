@@ -3,7 +3,7 @@
 
 Name:		dream
 Version:	2.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
@@ -53,6 +53,9 @@ desktop-file-install --add-category="Utility" \
 %{_mandir}/man1/*
 
 %changelog
+* Wed Feb 05 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Sun Aug 11 2019 Antonio Trande <sagitter@fedoraproject.org> - 2.2-1
 - Release 2.2
 
