@@ -3,14 +3,15 @@
 
 Name:		dream
 Version:	2.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
 Source0:	https://sourceforge.net/projects/drm/files/dream/%{version}/dream_%{version}.orig.tar.gz
 Source1:	dream.desktop
-Patch0:		dream-%{version}-use-system-libs.patch
-BuildRequires:	gcc-c++, hamlib-devel, dos2unix, qt5-devel, pulseaudio-libs-devel
+Patch0:		dream-2.2-use-system-libs.patch
+Patch1:		dream-2.2-hamlib-4-fix.patch
+BuildRequires:	gcc-c++, hamlib-devel, dos2unix, pulseaudio-libs-devel
 BuildRequires:	libpcap-devel, gpsd-devel, libsndfile-devel, speexdsp-devel, fftw-devel
 BuildRequires:	opus-devel, faad2-devel, qwt-qt5-devel, qt5-qtwebkit-devel
 BuildRequires:	desktop-file-utils, libpcap-devel
@@ -23,7 +24,7 @@ With Dream, DRM broadcasts can be received with a modified analog
 receiver (SW, MW, LW) and a PC with a sound card.
 
 %prep
-%autosetup -n dream-%{version}
+%autosetup -p1 -n dream-%{version}
 
 # convert CRLF to LF
 dos2unix dream.pro
@@ -53,6 +54,11 @@ desktop-file-install --add-category="Utility" \
 %{_mandir}/man1/*
 
 %changelog
+* Tue Apr 14 2020 Jaroslav Škarvada <jskarvad@redhat.com> - 2.2-3
+- Dropped unneeded qt5-devel build requires
+- Fixed build with hamlib-4
+- Rebuilt with hamlib-4
+
 * Wed Feb 05 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
