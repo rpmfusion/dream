@@ -3,7 +3,7 @@
 
 Name:		dream
 Version:	2.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
@@ -54,6 +54,9 @@ desktop-file-install --add-category="Utility" \
 %{_mandir}/man1/*
 
 %changelog
+* Sat Jul 11 2020 Leigh Scott <leigh123linux@gmail.com> - 2.2-4
+- Rebuilt
+
 * Tue Apr 14 2020 Jaroslav Škarvada <jskarvad@redhat.com> - 2.2-3
 - Dropped unneeded qt5-devel build requires
 - Fixed build with hamlib-4
