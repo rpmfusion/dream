@@ -1,0 +1,39 @@
+diff --git a/src/GUI-QT/EvaluationDlg.cpp b/src/GUI-QT/EvaluationDlg.cpp
+index 627ecaa..4252c5e 100644
+--- a/src/GUI-QT/EvaluationDlg.cpp
++++ b/src/GUI-QT/EvaluationDlg.cpp
+@@ -789,7 +789,7 @@ void systemevalDlg::UpdateGPS(CParameter& Parameters)
+     if (gps.set&TIME_SET)
+     {
+         struct tm * p_ts;
+-        time_t tt = time_t(gps.fix.time);
++        time_t tt = time_t(gps.fix.time.tv_sec);
+         p_ts = gmtime(&tt);
+         QChar fill('0');
+         qStrTime = QString("UTC: %1/%2/%3 %4:%5:%6  ")
+diff --git a/src/MDI/MDITagItems.cpp b/src/MDI/MDITagItems.cpp
+index 15e0c33..cb0de4e 100644
+--- a/src/MDI/MDITagItems.cpp
++++ b/src/MDI/MDITagItems.cpp
+@@ -1104,7 +1104,7 @@ CTagItemGeneratorGPS::GenTag(bool bIsValid, gps_data_t& gps_data)	// Long/Lat in
+ 
+ 		if (gps_data.set&TIME_SET)
+ 		{
+-			time_t time = (time_t)gps_data.fix.time;
++			time_t time = (time_t)gps_data.fix.time.tv_sec;
+ 			struct tm * ptm;
+ 			ptm = gmtime ( &time );
+ 			Enqueue((uint32_t) ptm->tm_hour, SIZEOF__BYTE);
+diff --git a/src/MDI/RSCITagItemDecoders.cpp b/src/MDI/RSCITagItemDecoders.cpp
+index 78b38aa..ec9cc8b 100644
+--- a/src/MDI/RSCITagItemDecoders.cpp
++++ b/src/MDI/RSCITagItemDecoders.cpp
+@@ -255,7 +255,7 @@ void CTagItemDecoderRgps::DecodeTag(CVector<_BINARY>& vecbiTag, const int iLen)
+         else
+             unsetenv("TZ");
+ #endif
+-        gps_data.fix.time = t;
++        gps_data.fix.time.tv_sec = t;
+         gps_data.set |= TIME_SET;
+     }
+ 

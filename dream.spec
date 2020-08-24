@@ -3,7 +3,7 @@
 
 Name:		dream
 Version:	2.2
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
@@ -11,6 +11,7 @@ Source0:	https://sourceforge.net/projects/drm/files/dream/%{version}/dream_%{ver
 Source1:	dream.desktop
 Patch0:		dream-2.2-use-system-libs.patch
 Patch1:		dream-2.2-hamlib-4-fix.patch
+Patch2:		dream-2.2-gpsd-3.20-fix.patch
 BuildRequires:	gcc-c++, hamlib-devel, dos2unix, pulseaudio-libs-devel
 BuildRequires:	libpcap-devel, gpsd-devel, libsndfile-devel, speexdsp-devel, fftw-devel
 BuildRequires:	opus-devel, faad2-devel, qwt-qt5-devel, qt5-qtwebkit-devel
@@ -54,6 +55,10 @@ desktop-file-install --add-category="Utility" \
 %{_mandir}/man1/*
 
 %changelog
+* Mon Aug 24 2020 Jaroslav Škarvada <jskarvad@redhat.com> - 2.2-6
+- Fixed FTBFS
+  Resolves: rfbz#5697
+
 * Wed Aug 19 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.2-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
