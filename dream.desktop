@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Dream
-Comment=Digital Radio Mondiale (DRM) receiver
-Exec=/usr/bin/dream
-Icon=dream
-Terminal=false
