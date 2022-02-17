@@ -1,0 +1,67 @@
+diff --git a/src/GUI-QT/EvaluationDlg.cpp b/src/GUI-QT/EvaluationDlg.cpp
+index 4252c5e..0ba23d9 100644
+--- a/src/GUI-QT/EvaluationDlg.cpp
++++ b/src/GUI-QT/EvaluationDlg.cpp
+@@ -756,7 +756,7 @@ void systemevalDlg::UpdateGPS(CParameter& Parameters)
+         LEDGPS->SetLight(CMultColorLED::RL_RED);
+     } else {
+ 
+-        if(gps.status==0)
++        if(gps.fix.status==0)
+             LEDGPS->SetLight(CMultColorLED::RL_YELLOW);
+         else
+             LEDGPS->SetLight(CMultColorLED::RL_GREEN);
+diff --git a/src/MDI/MDITagItems.cpp b/src/MDI/MDITagItems.cpp
+index cb0de4e..fcd4b7b 100644
+--- a/src/MDI/MDITagItems.cpp
++++ b/src/MDI/MDITagItems.cpp
+@@ -1010,7 +1010,7 @@ CTagItemGeneratorGPS::GenTag(bool bIsValid, gps_data_t& gps_data)	// Long/Lat in
+ 		uint32_t source = 0xff; // GPS_SOURCE_NOT_AVAILABLE
+ 		PrepareTag(26 * SIZEOF__BYTE);
+ 		if(gps_data.set&STATUS_SET) {
+-			switch(gps_data.status) {
++			switch(gps_data.fix.status) {
+ 			case 0: source = 3; break; // manual
+ 			case 1: source = 1; break; // gps
+ 			case 2: source = 2; break; // differential
+diff --git a/src/MDI/RSCITagItemDecoders.cpp b/src/MDI/RSCITagItemDecoders.cpp
+index ec9cc8b..fd00124 100644
+--- a/src/MDI/RSCITagItemDecoders.cpp
++++ b/src/MDI/RSCITagItemDecoders.cpp
+@@ -172,19 +172,19 @@ void CTagItemDecoderRgps::DecodeTag(CVector<_BINARY>& vecbiTag, const int iLen)
+         break;
+     case 1:
+         gps_data.set=STATUS_SET;
+-        gps_data.status=1;
++        gps_data.fix.status=1;
+         break;
+     case 2:
+         gps_data.set=STATUS_SET;
+-        gps_data.status=2;
++        gps_data.fix.status=2;
+         break;
+     case 3:
+         gps_data.set=STATUS_SET;
+-        gps_data.status=0;
++        gps_data.fix.status=0;
+         break;
+     case 0xff:
+         gps_data.set=0;
+-        gps_data.status=0;
++        gps_data.fix.status=0;
+         break;
+     default:
+         cerr << "error decoding rgps" << endl;
+diff --git a/src/Parameter.cpp b/src/Parameter.cpp
+index 59eff77..5483e8c 100644
+--- a/src/Parameter.cpp
++++ b/src/Parameter.cpp
+@@ -143,7 +143,7 @@ CParameter::CParameter():
+     GenerateRandomSerialNumber();
+     CellMappingTable.MakeTable(eRobustnessMode, eSpectOccup, iSigSampleRate);
+     gps_data.set=0;
+-    gps_data.status=0;
++    gps_data.fix.status=0;
+ #ifdef HAVE_LIBGPS
+     gps_data.gps_fd = -1;
+ #endif
