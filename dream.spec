@@ -29,6 +29,9 @@ BuildRequires:	qt5-qtwebkit-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libpcap-devel
 BuildRequires:	faac-devel > 1.29.9.2-3
+# for future new release
+#BuildRequires:	fdk-aac-free-devel
+#BuildRequires:	SoapySDR-devel
 Requires:	hicolor-icon-theme
 
 %description
