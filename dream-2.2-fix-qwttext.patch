@@ -1,0 +1,64 @@
+--- a/src/GUI-QT/DRMPlot.cpp	(revision 1347)
++++ b/src/GUI-QT/DRMPlot.cpp	(working copy)
+@@ -565,7 +565,7 @@
+ 		curve.SETDATA(&r[0], &im[0], size);
+ 	}
+ 	else
+-		curve.SETDATA(nullptr, nullptr, 0);
++		curve.SETDATA((float *)nullptr, (float *)nullptr, 0);
+ }
+ 
+ void CDRMPlot::SetData(CVector<_COMPLEX>& veccData)
+@@ -596,15 +596,15 @@
+ 	vcurvegrid.detach();
+ 	main1curve.detach();
+ 	main2curve.detach();
+-	curve1.SETDATA(nullptr, nullptr, 0);
+-	curve2.SETDATA(nullptr, nullptr, 0);
+-	curve3.SETDATA(nullptr, nullptr, 0);
+-	curve4.SETDATA(nullptr, nullptr, 0);
+-	curve5.SETDATA(nullptr, nullptr, 0);
+-	hcurvegrid.SETDATA(nullptr, nullptr, 0);
+-	vcurvegrid.SETDATA(nullptr, nullptr, 0);
+-	main1curve.SETDATA(nullptr, nullptr, 0);
+-	main2curve.SETDATA(nullptr, nullptr, 0);
++	curve1.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	curve2.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	curve3.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	curve4.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	curve5.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	hcurvegrid.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	vcurvegrid.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	main1curve.SETDATA((float *)nullptr, (float *)nullptr, 0);
++	main2curve.SETDATA((float *)nullptr, (float *)nullptr, 0);
+ #if QWT_VERSION < 0x060000
+ 	curve1.setSymbol(QwtSymbol());
+     curve2.setSymbol(QwtSymbol());
+@@ -794,7 +794,7 @@
+ 	else
+ 	{
+ 		plot->setTitle(tr("No audio decoding possible"));
+-		main1curve.SETDATA(nullptr, nullptr, 0);
++		main1curve.SETDATA((float *)nullptr, (float *)nullptr, 0);
+ 	}
+ 	plot->enableAxis(QwtPlot::yRight, false);
+ 	plot->setAxisTitle(QwtPlot::xBottom, tr("Frequency [kHz]"));
+@@ -1175,7 +1175,7 @@
+ 		curve2.SETDATA(dX, dY, 2);
+ 	}
+ 	else
+-		curve2.SETDATA(nullptr, nullptr, 0);
++		curve2.SETDATA((float *)nullptr, (float *)nullptr, 0);
+ }
+ 
+ void CDRMPlot::SetupInpSpecWaterf()
+--- a/src/GUI-QT/DRMPlot.h	(revision 1347)
++++ b/src/GUI-QT/DRMPlot.h	(working copy)
+@@ -60,6 +60,7 @@
+ #include <qwt_plot_picker.h>
+ #include <qwt_scale_draw.h>
+ #include <qwt_symbol.h>
++#include <qwt_text.h>
+ #if QWT_VERSION >= 0x060000
+ # include <qwt_picker_machine.h>
+ #endif
