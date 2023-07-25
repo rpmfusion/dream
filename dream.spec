@@ -1,20 +1,27 @@
+# https://sourceforge.net/p/drm/code/HEAD/tree/branches/dream-ollie-deployed/
+%global svn_revision r1406
+%global svn_date 20230725
+%global svn_name drm-code-%{svn_revision}-branches-dream-ollie-deployed
+
+%global svn_suffix %{svn_date}svn%{svn_revision}
+
 Name:		dream
-Version:	2.2
-Release:	13%{?dist}
+Version:	2.3.0~%{svn_suffix}
+Release:	1%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
-Source0:	https://sourceforge.net/projects/drm/files/dream/%{version}/dream_%{version}.orig.tar.gz
+#Source0:	https://sourceforge.net/projects/drm/files/dream/%%{version}/dream_%%{version}.orig.tar.gz
+Source0:	https://sourceforge.net/code-snapshots/svn/d/dr/drm/code/%{svn_name}.zip
 Source1:	dream.desktop
 Source2:	net.sourceforge.Dream.metainfo.xml
 Patch0:		dream-2.2-use-system-libs.patch
-
 # https://sourceforge.net/p/drm/tickets/233/
-Patch1:		dream-2.2-hamlib-4-fix.patch
+Patch1:		dream-2.3.0-hamlib-4-fix.patch
 # https://sourceforge.net/p/drm/tickets/234/
-Patch2:		dream-2.2-gpsd-3.20-fix.patch
+Patch2:		dream-2.3.0-gpsd-3.20-fix.patch
 # https://sourceforge.net/p/drm/tickets/235/
-Patch3:		dream-2.2-gpsd-3.23-fix.patch
+Patch3:		dream-2.3.0-gpsd-3.23-fix.patch
 Patch4:		dream-2.2-fix-qwttext.patch
 BuildRequires:	gcc-c++
 BuildRequires:	hamlib-devel
@@ -31,6 +38,8 @@ BuildRequires:	qt5-qtwebkit-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libpcap-devel
 BuildRequires:	faac-devel > 1.29.9.2-3
+BuildRequires:	fdk-aac-free-devel
+BuildRequires:	SoapySDR-devel
 # for future new release
 #BuildRequires:	fdk-aac-free-devel
 #BuildRequires:	SoapySDR-devel
@@ -42,7 +51,7 @@ With Dream, DRM broadcasts can be received with a modified analog
 receiver (SW, MW, LW) and a PC with a sound card.
 
 %prep
-%autosetup -p1 -n dream-%{version}
+%autosetup -p1 -n %{svn_name}
 
 %build
 OUT_PWD="%{_prefix}" %{qmake_qt5} ./dream.pro

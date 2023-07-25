@@ -19,8 +19,8 @@ index 15e0c33..cb0de4e 100644
  
  		if (gps_data.set&TIME_SET)
  		{
--			time_t time = (time_t)gps_data.fix.time;
-+			time_t time = (time_t)gps_data.fix.time.tv_sec;
+-            time_t time = (time_t) gps_data.fix.time;
++			time_t time = (time_t) gps_data.fix.time.tv_sec;
  			struct tm * ptm;
  			ptm = gmtime ( &time );
  			Enqueue((uint32_t) ptm->tm_hour, SIZEOF__BYTE);
