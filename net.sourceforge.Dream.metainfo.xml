@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.sourceforge.Dream</id>
+  <launchable type="desktop-id">dream.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0</project_license>
+  <provides>
+    <binary>dream</binary>
+  </provides>
+  <name>Dream</name>
+  <summary>Software implementation of a DRM receiver</summary>
+  <description>
+    <p>
+      Dream is a software implementation of a Digital Radio Mondiale (DRM) receiver. With Dream, DRM broadcasts
+      can be received with a modified analog receiver (SW, MW, LW) and a PC with a sound card.
+    </p>
+    <p>
+      Digital Radio Mondiale is a set of digital audio broadcasting technologies designed to work over the bands
+      currently used for analogue radio broadcasting.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://a.fsdn.com/con/app/proj/drm/screenshots/42939.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://a.fsdn.com/con/app/proj/drm/screenshots/25556.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://a.fsdn.com/con/app/proj/drm/screenshots/25558.jpg</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://sourceforge.net/projects/drm/</url>
+  <url type="bugtracker">https://sourceforge.net/p/drm/tickets/</url>
+  <content_rating type="oars-1.1"/>
+</component>

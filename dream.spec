@@ -1,11 +1,12 @@
 Name:		dream
 Version:	2.2
-Release:	12%{?dist}
+Release:	13%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
 Source0:	https://sourceforge.net/projects/drm/files/dream/%{version}/dream_%{version}.orig.tar.gz
 Source1:	dream.desktop
+Source2:	net.sourceforge.Dream.metainfo.xml
 Patch0:		dream-2.2-use-system-libs.patch
 
 # https://sourceforge.net/p/drm/tickets/233/
@@ -14,7 +15,7 @@ Patch1:		dream-2.2-hamlib-4-fix.patch
 Patch2:		dream-2.2-gpsd-3.20-fix.patch
 # https://sourceforge.net/p/drm/tickets/235/
 Patch3:		dream-2.2-gpsd-3.23-fix.patch
-Patch4:     dream-2.2-fix-qwttext.patch
+Patch4:		dream-2.2-fix-qwttext.patch
 BuildRequires:	gcc-c++
 BuildRequires:	hamlib-devel
 BuildRequires:	pulseaudio-libs-devel
@@ -53,6 +54,9 @@ OUT_PWD="%{_prefix}" %{qmake_qt5} ./dream.pro
 # icon
 install -Dpm 0644 src/GUI-QT/res/MainIcon.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/dream.svg
 
+# metainfo
+install -Dpm 0644 %{SOURCE2} %{buildroot}%{_metainfodir}/net.sourceforge.Dream.metainfo.xml
+
 # desktop file
 mkdir -p  %{buildroot}%{_datadir}/applications
 desktop-file-install --add-category="Utility" \
@@ -66,8 +70,12 @@ desktop-file-install --add-category="Utility" \
 %{_datadir}/icons/hicolor/scalable/apps/dream.svg
 %{_datadir}/applications/dream.desktop
 %{_mandir}/man1/*
+%{_metainfodir}/net.sourceforge.Dream.metainfo.xml
 
 %changelog
+* Sat Jul 22 2023 Daniel Rusek <mail@asciiwolf.com> - 2.2-13
+- Added AppStream metadata
+
 * Wed Feb 08 2023 Leigh Scott <leigh123linux@gmail.com> - 2.2-12
 - rebuilt
 
