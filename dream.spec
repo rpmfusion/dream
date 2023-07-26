@@ -7,7 +7,7 @@
 
 Name:		dream
 Version:	2.3.0~%{svn_suffix}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
@@ -82,6 +82,9 @@ desktop-file-install --add-category="Utility" \
 %{_metainfodir}/net.sourceforge.Dream.metainfo.xml
 
 %changelog
+* Wed Jul 26 2023 Jaroslav Škarvada <jskarvad@redhat.com> - 2.3.0~20230725svnr1406-2
+- Fixed changelog
+
 * Wed Jul 26 2023 Jaroslav Škarvada <jskarvad@redhat.com> - 2.3.0~20230725svnr1406-1
 - New snapshot version
 
