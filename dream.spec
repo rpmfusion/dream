@@ -22,7 +22,6 @@ Patch1:		dream-2.3.0-hamlib-4-fix.patch
 Patch2:		dream-2.3.0-gpsd-3.20-fix.patch
 # https://sourceforge.net/p/drm/tickets/235/
 Patch3:		dream-2.3.0-gpsd-3.23-fix.patch
-Patch4:		dream-2.2-fix-qwttext.patch
 BuildRequires:	gcc-c++
 BuildRequires:	hamlib-devel
 BuildRequires:	pulseaudio-libs-devel
