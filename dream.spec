@@ -82,6 +82,9 @@ desktop-file-install --add-category="Utility" \
 %{_metainfodir}/net.sourceforge.Dream.metainfo.xml
 
 %changelog
+* Wed Jul 26 2023 Jaroslav Škarvada <jskarvad@redhat.com> - 2.3.0~20230725svnr1406-1
+- New snapshot version
+
 * Sat Jul 22 2023 Daniel Rusek <mail@asciiwolf.com> - 2.2-13
 - Added AppStream metadata
 
