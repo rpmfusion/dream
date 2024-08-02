@@ -7,7 +7,7 @@
 
 Name:		dream
 Version:	2.3.0~%{svn_suffix}
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A software radio for AM and Digital Radio Mondiale (DRM)
 License:	GPLv2+
 URL:		https://sourceforge.net/projects/drm/
@@ -82,6 +82,9 @@ desktop-file-install --add-category="Utility" \
 %{_metainfodir}/net.sourceforge.Dream.metainfo.xml
 
 %changelog
+* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.3.0~20230725svnr1406-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.3.0~20230725svnr1406-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
